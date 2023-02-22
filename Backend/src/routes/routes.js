@@ -5,8 +5,13 @@ import { Login } from '../controllers/Login.js';
 import { GetImages } from '../controllers/GetImages.js';
 import { DeleteImage } from '../controllers/DeleteImage.js';
 import { upload3, uploadFile2 } from '../controllers/UploadEditImage.js';
+import { FavoriteImage } from '../controllers/findFavorite.js';
 
 export const routes = Express.Router();
+
+routes.post('/Favorite', FavoriteImage, function (req, res) {
+  //Recepcion de Favoritos
+});
 
 routes.delete('/Delete', DeleteImage, function (req, res) {
   //Recepcion para Eliminar las Imagenes
