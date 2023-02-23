@@ -1,13 +1,14 @@
 import fs from 'fs';
 import mysql from 'mysql2';
 import path from 'path';
+import { host, port, username, password } from './MySql.js';
 
 export const DeleteImage = (req, res) => {
   var conexion = mysql.createConnection({
-    host: 'localhost',
-    port: '3306',
-    user: 'root',
-    password: 'Darkkevo07',
+    host: host,
+    port: port,
+    user: username,
+    password: password,
     database: 'imagesdatabase',
     multipleStatements: true,
   });

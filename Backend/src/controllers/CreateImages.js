@@ -1,11 +1,12 @@
 import mysql from 'mysql2';
+import { host, port, username, password } from './MySql.js';
 
-export function CreateImage(img_route, time, description, favorite, IdUser, categoria) {
+export function CreateImage(img_route, time, description, IdUser, categoria) {
   var conexion = mysql.createConnection({
-    host: 'localhost',
-    port: '3306',
-    user: 'root',
-    password: 'Darkkevo07',
+    host: host,
+    port: port,
+    user: username,
+    password: password,
     database: 'imagesdatabase',
     multipleStatements: true,
   });
@@ -18,8 +19,8 @@ export function CreateImage(img_route, time, description, favorite, IdUser, cate
     console.log('Bienvenido, Realizando Query... ' + conexion.threadId);
   });
 
-  let query = 'INSERT INTO `imagesdatabase`.`imagenes` (`img_route`, `time`, `description`, `favorite`, `IdUser`, `categoria`)';
-  query += ` VALUES ('${img_route}', '${time}', '${description}', '${favorite}', '${IdUser}', '${categoria}');`;
+  let query = 'INSERT INTO `imagesdatabase`.`imagenes` (`img_route`, `time`, `description`, `IdUser`, `categoria`)';
+  query += ` VALUES ('${img_route}', '${time}', '${description}', '${IdUser}', '${categoria}');`;
 
   conexion.query(query, (err, results) => {
     if (err) {
