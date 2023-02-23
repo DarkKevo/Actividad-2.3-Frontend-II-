@@ -6,8 +6,14 @@ import { GetImages } from '../controllers/GetImages.js';
 import { DeleteImage } from '../controllers/DeleteImage.js';
 import { upload3, uploadFile2 } from '../controllers/UploadEditImage.js';
 import { FavoriteImage } from '../controllers/findFavorite.js';
+import { VerifyToken } from '../controllers/VerifyToken.js';
 
 export const routes = Express.Router();
+
+routes.post('/probando', function (req, res) {
+  //Prueba de Token
+  console.log(req.body);
+});
 
 routes.post('/Favorite', FavoriteImage, function (req, res) {
   //Recepcion de Favoritos
@@ -25,7 +31,7 @@ routes.get('/Images', GetImages, function (req, res) {
   //Recepcion para las Images
 });
 
-routes.get('/Login/send/:user/:pwd', Login, function (req, res) {
+routes.post('/Login/send', Login, function (req, res) {
   //Recepcion para el Login
 });
 

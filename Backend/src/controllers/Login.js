@@ -1,4 +1,5 @@
 import mysql from 'mysql2';
+import jwt from 'jsonwebtoken';
 
 export const Login = (req, res) => {
   var conexion = mysql.createConnection({
@@ -18,11 +19,11 @@ export const Login = (req, res) => {
     console.log('Bienvenido, Realizando Query... ' + conexion.threadId);
   });
 
-  let pwd = req.params.pwd;
-  let user = req.params.user;
+  let pwd = req.body.pwd;
+  let user = req.body.user;
 
   let query = 'SELECT * FROM `imagesdatabase`.`usuario` where';
-  query += '`user` = ' + `'${user}' and ` + '`pwd` = ' + `'${pwd}';` 
+  query += '`user` = ' + `'${user}' and ` + '`pwd` = ' + `'${pwd}';`;
 
   conexion.query(query, (err, results) => {
     if (err) {
@@ -32,6 +33,11 @@ export const Login = (req, res) => {
       console.log(results);
       conexion.end();
     }
-    res.json(results);
+    if (results.length == 0) {
+      res.json({ message: false, token: null });
+    } else {
+      let token = jwt.sign({ user: user, exp: Date.now() + 60 * 10000 }, 'PhayFrase');
+      res.json({ token: token, message: true, icon: results[0].icon, id: results[0].IdUser });
+    }
   });
 };
