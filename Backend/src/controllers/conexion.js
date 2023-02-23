@@ -1,10 +1,11 @@
 import mysql from 'mysql2';
+import { host, port, user, password } from './MySql.js';
 
 export var verify = mysql.createConnection({
-  host: 'localhost',
-  port: '3306',
-  user: 'root',
-  password: 'Darkkevo07',
+  host: host,
+  port: port,
+  user: user,
+  password: password,
   multipleStatements: true,
 });
 
