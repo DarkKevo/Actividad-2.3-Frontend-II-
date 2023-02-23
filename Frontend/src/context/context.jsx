@@ -58,14 +58,17 @@ export function DataContextProvider(props) {
     formdata.append('IdUser', id);
     let config = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer dgderdgdrg`,
         'Content-Type': 'multipart/form-data',
       },
     };
     axios
-      .post('http://localhost:3000/probando', formdata, config)
+      .post('http://localhost:3000/Images/send', formdata, config)
       .then(function (response) {
         console.log(response);
+        if (response.data.message == false) {
+          alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+        }
       })
       .catch(function (error) {
         console.log(error);

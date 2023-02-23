@@ -1,0 +1,3 @@
+En la carpeta src/controllers se encuentra el archivo MySQL.js que es un archivo de configuracion de su MySQL por favor ajustar esos valores a los de su cuenta.
+
+- Gracias :D

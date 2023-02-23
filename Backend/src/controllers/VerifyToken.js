@@ -7,10 +7,11 @@ export const VerifyToken = (req, res, next) => {
     const payload = jwt.verify(token, 'PhayFrase');
 
     if (Date.now() > payload.exp) {
-      res.json({ message: 'Invalid Token Expired' });
+      res.json({ message: false });
+    } else {
+      next();
     }
   } catch (error) {
-    res.json({ message: 'Invalid Token Error' });
+    res.json({ message: false });
   }
-  next();
 };

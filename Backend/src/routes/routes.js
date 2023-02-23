@@ -23,7 +23,7 @@ routes.delete('/Delete', DeleteImage, function (req, res) {
   //Recepcion para Eliminar las Imagenes
 });
 
-routes.put('/Edit', upload3, uploadFile2, function (req, res) {
+routes.put('/Edit', VerifyToken, upload3, uploadFile2, function (req, res) {
   //Recepcion de Imagenes de Edicion
 });
 
@@ -39,6 +39,6 @@ routes.post('/CreateUser/send', CreateUser, function (req, res) {
   //Recepcion de Usuarios
 });
 
-routes.post('/Images/send', upload2, uploadFile, function (req, res) {
+routes.post('/Images/send', VerifyToken, upload2, uploadFile, function (req, res) {
   //Recepcion de Imagenes
 });

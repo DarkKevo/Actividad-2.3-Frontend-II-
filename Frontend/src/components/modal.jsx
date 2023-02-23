@@ -12,7 +12,7 @@ function Modal() {
 
   const ModalHandler = () => {
     console.log(descripcion, categoria, file);
-    
+    CargarImagen(descripcion, categoria, data.id, file, data.token);
     setFile('');
     setDescripcion('');
     setCategoria('all');
