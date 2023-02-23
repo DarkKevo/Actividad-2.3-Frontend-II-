@@ -1,10 +1,20 @@
 import '../styles/InicioSesion.css';
 import { Link } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { dataContext } from '../context/context';
 import Nav from './Nav';
 function InicioSesion() {
-  const { hola } = useContext(dataContext);
+  const { hola, Login } = useContext(dataContext);
+
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+
+  const formRegister = (e) => {
+    e.preventDefault();
+    Login(user, password);
+    setUser('');
+    setPassword('');
+  };
 
   return (
     <div className='InicioSesion'>
@@ -15,13 +25,31 @@ function InicioSesion() {
         <img className='w-75 h-75' src='src\assets\pexels-vladislav-murashko-5990737.jpg' alt='' />
       </div>
       <div className='formulario'>
-        <form className='w-75 p-5 bg-black rounded-2'>
+        <form onSubmit={formRegister} className='w-75 p-5 bg-black rounded-2'>
           <h1>Iniciar Sesión</h1>
           <div className='boton mb-3'>
-            <input className='form-control' placeholder='Nombre de Usuario' required />
+            <input
+              value={user}
+              onChange={(e) => {
+                setUser(e.target.value);
+              }}
+              className='form-control'
+              placeholder='Nombre de Usuario'
+              required
+            />
           </div>
           <div className=' boton mb-3'>
-            <input type='password' className='form-control' id='exampleInputPassword1' placeholder='Contraseña' required />
+            <input
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              type='password'
+              className='form-control'
+              id='exampleInputPassword1'
+              placeholder='Contraseña'
+              required
+            />
             <div id='emailHelp' className='form-text'>
               Aun no tienes una cuenta?
               <Link to={'/registro'}>
