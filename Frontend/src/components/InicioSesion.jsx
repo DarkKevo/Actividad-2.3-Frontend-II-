@@ -14,7 +14,6 @@ function InicioSesion() {
     Login(user, password);
     setUser('');
     setPassword('');
-    //window.location.href = '/';
   };
 
   return (

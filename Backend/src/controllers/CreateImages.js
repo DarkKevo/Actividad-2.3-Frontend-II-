@@ -1,11 +1,11 @@
 import mysql from 'mysql2';
-import { host, port, user, password } from './MySql.js';
+import { host, port, username, password } from './MySql.js';
 
 export function CreateImage(img_route, time, description, favorite, IdUser, categoria) {
   var conexion = mysql.createConnection({
     host: host,
     port: port,
-    user: user,
+    user: username,
     password: password,
     database: 'imagesdatabase',
     multipleStatements: true,

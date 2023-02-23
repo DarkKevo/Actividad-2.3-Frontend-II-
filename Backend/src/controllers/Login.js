@@ -1,12 +1,12 @@
 import mysql from 'mysql2';
 import jwt from 'jsonwebtoken';
-import { host, port, user, password } from './MySql.js';
+import { host, port, username, password } from './MySql.js';
 
 export const Login = (req, res) => {
   var conexion = mysql.createConnection({
     host: host,
     port: port,
-    user: user,
+    user: username,
     password: password,
     database: 'imagesdatabase',
     multipleStatements: true,

@@ -1,13 +1,13 @@
 import fs from 'fs';
 import mysql from 'mysql2';
 import path from 'path';
-import { host, port, user, password } from './MySql.js';
+import { host, port, username, password } from './MySql.js';
 
 export const EditImage = (id, description, time, img_route, categoria) => {
   var conexion = mysql.createConnection({
     host: host,
     port: port,
-    user: user,
+    user: username,
     password: password,
     database: 'imagesdatabase',
     multipleStatements: true,
