@@ -1,79 +1,99 @@
-import { FaPlus } from 'react-icons/fa';
-import { useContext, useState, useEffect } from 'react';
-import { dataContext } from '../context/context';
+import { FaPlus } from "react-icons/fa";
+import { useContext, useState, useEffect } from "react";
+import { dataContext } from "../context/context";
 
 function Modal() {
-  let data = JSON.parse(localStorage.getItem('Sesion'));
-  const [descripcion, setDescripcion] = useState('');
-  const [categoria, setCategoria] = useState('all');
-  const [file, setFile] = useState('');
+  let data = JSON.parse(localStorage.getItem("Sesion"));
+  const [descripcion, setDescripcion] = useState("");
+  const [categoria, setCategoria] = useState("all");
+  const [file, setFile] = useState("");
 
   const { CargarImagen } = useContext(dataContext);
 
   const ModalHandler = () => {
     console.log(descripcion, categoria, file);
     CargarImagen(descripcion, categoria, data.id, file, data.token);
-    setFile('');
-    setDescripcion('');
-    setCategoria('all');
+    setFile("");
+    setDescripcion("");
+    setCategoria("all");
   };
 
   return (
     <div>
       {/* <!-- Button trigger modal --> */}
       <button
-        type='button'
-        class='btn bg-secondary rounded-5 m-5 p-3 position-absolute bottom-0 end-0'
-        data-bs-toggle='modal'
-        data-bs-target='#exampleModal'
+        type="button"
+        className="btn bg-secondary rounded-5 m-5 p-3 position-fixed bottom-0 end-0 z-2"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
       >
-        <FaPlus className='fs-2' />
+        <FaPlus className="fs-2" />
       </button>
 
       {/* <!-- Modal --> */}
-      <div class='modal fade' id='exampleModal' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
-        <div class='modal-dialog modal-fullscreen-sm-down'>
-          <div class='modal-content'>
-            <div class='modal-header'>
-              <h1 class='modal-title fs-5' id='exampleModalLabel'>
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-fullscreen-sm-down">
+          <div className="modal-content bg-black">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Modal title
               </h1>
-              <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class='modal-body d-flex flex-column'>
-              <div class='input-group mb-3'>
-                {/* input file */}
+            <div className="modal-body d-flex flex-column">
+              {/* input file */}
+              <div className="input-group mb-3">
                 <input
                   onChange={(e) => {
                     setFile(e.target.files[0]);
                   }}
-                  type='file'
-                  class='form-control'
-                  id='inputGroupFile02'
+                  type="file"
+                  className="form-control"
+                  id="inputGroupFile02"
                 />
-                {/* input text */}
+              </div>
+              {/* input text */}
+              <div className="input-group mb-3">
                 <input
                   onChange={(e) => {
                     setDescripcion(e.target.value);
                   }}
                   value={descripcion}
-                  className='form-control'
-                  placeholder='Descripcion'
+                  className="form-control"
+                  placeholder="Descripcion"
                   required
                 />
-                {/* select */}
-                <button className='btn btn-secondary dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+              </div>
+              {/* select */}
+              <div className="input-group mb-3">
+                <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Seleccione una categoria
                 </button>
 
-                <ul className='dropdown-menu'>
+                <ul className="dropdown-menu">
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('Accion');
+                        setCategoria("Accion");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       Accion
                     </a>
@@ -81,10 +101,10 @@ function Modal() {
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('Amor');
+                        setCategoria("Amor");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       Amor
                     </a>
@@ -92,10 +112,10 @@ function Modal() {
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('Vintage');
+                        setCategoria("Vintage");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       Vintage
                     </a>
@@ -103,10 +123,10 @@ function Modal() {
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('Paisajes');
+                        setCategoria("Paisajes");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       Paisajes
                     </a>
@@ -114,10 +134,10 @@ function Modal() {
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('Minimalista');
+                        setCategoria("Minimalista");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       Minimalista
                     </a>
@@ -125,10 +145,10 @@ function Modal() {
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('Dark');
+                        setCategoria("Dark");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       Dark
                     </a>
@@ -136,24 +156,24 @@ function Modal() {
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('ligth');
+                        setCategoria("ligth");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       Ligth
                     </a>
                   </li>
                   <li>
-                    <hr className='dropdown-divider' />
+                    <hr className="dropdown-divider" />
                   </li>
                   <li>
                     <a
                       onClick={() => {
-                        setCategoria('all');
+                        setCategoria("all");
                       }}
-                      className='dropdown-item'
-                      href='#'
+                      className="dropdown-item"
+                      href="#"
                     >
                       all
                     </a>
@@ -161,11 +181,19 @@ function Modal() {
                 </ul>
               </div>
             </div>
-            <div class='modal-footer'>
-              <button onClick={ModalHandler} type='button' class='btn bg-secondary'>
+            <div className="modal-footer">
+              <button
+                onClick={ModalHandler}
+                type="button"
+                className="btn bg-secondary"
+              >
                 Guardar
               </button>
-              <button type='button' class='btn bg-secondary' data-bs-dismiss='modal'>
+              <button
+                type="button"
+                className="btn bg-secondary"
+                data-bs-dismiss="modal"
+              >
                 Cerrar
               </button>
             </div>

@@ -1,6 +1,19 @@
 .card{
-    transition: transform 1s;
+    transition: transform 0.5s;
+    width:23%;
+    min-height: 320px;
+    height: auto;
 }
 .card:hover{
-    transform: scale(1.25);
+    transform: scale(1.1);
+}
+
+@media(max-width:920px){
+    .card{
+        min-height: 180px;
+        max-height: 200px;
+    }
+    .card .card-title{
+        font-size: 1rem;
+    }
 }

@@ -19,15 +19,39 @@ a{
     align-items: center;
 }
 .botonCerrar div{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: start;
 }
 .botonCerrar div h4,
 .botonCerrar div p{
+    width: 100%;
     font-size: 1.5rem;
     margin: 0;
+    text-align: center;
 }
 .botonCerrar .icon{
     font-size: 2rem;
+    margin: 3%;
+}
+
+@media (max-width:1024px) {
+    .botonCerrar div h4,
+    .botonCerrar div p{
+        font-size: 0.6rem;
+    }
+    .botonCerrar .icon{
+        font-size: 2rem;
+    }
+}
+
+@media(max-width:920px){
+    .botonCerrar div h4,
+    .botonCerrar div p{
+        font-size: 1rem;
+    }
+    .botonCerrar .icon{
+        font-size: 3rem;
+    }
 }

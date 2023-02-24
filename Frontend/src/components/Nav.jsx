@@ -9,7 +9,7 @@ function Nav({ seccion }) {
   const [SesionData, setData] = useState(JSON.parse(localStorage.getItem('Sesion')));
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-oscuro'>
+    <nav className='navbar navbar-expand-lg navbar-dark bg-oscuro z-1'>
       <div className='container-fluid'>
         <div className='container w-25'>
           <Link to={'/'} className='navbar-brand'>
@@ -36,37 +36,87 @@ function Nav({ seccion }) {
                 </Link>
               </li>
               <li className='nav-item'>
-                <Link to={'/Perfil'} className='nav-link active m-4 fs-5' href='#'>
                   Perfil
-                </Link>
               </li>
               <li className='nav-item'>
-                <Link to={'/favoritos'} className='nav-link active m-4 fs-5' href='#'>
                   Favoritos
-                </Link>
               </li>
               <li className='nav-item dropdown m-4 fs-5'>
-                <button className='btn btn-secondary dropdown-toggle nav-link p-3' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+              <button
+                  className="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
                   Seleccione una categoria
                 </button>
 
-                <ul className='dropdown-menu'>
+                <ul className="dropdown-menu">
                   <li>
-                    <a className='dropdown-item' href='#'>
-                      Action
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Accion
                     </a>
                   </li>
                   <li>
-                    <a className='dropdown-item' href='#'>
-                      Another action
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Amor
                     </a>
                   </li>
                   <li>
-                    <hr className='dropdown-divider' />
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Vintage
+                    </a>
                   </li>
                   <li>
-                    <a className='dropdown-item' href='#'>
-                      Something else here
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Paisajes
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Minimalista
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Dark
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      Ligth
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-item"
+                      href="#"
+                    >
+                      all
                     </a>
                   </li>
                 </ul>
