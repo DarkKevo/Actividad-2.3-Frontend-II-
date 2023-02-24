@@ -33,7 +33,7 @@ function Inicio() {
     <div className='Inicio'>
       <Nav />
       <Modal />
-      <div className='container d-flex flex-wrap justify-content-between'>
+      <div className='container d-flex flex-wrap justify-content-evenly p-4'>
         {imagenes.map((t) => (
           <Cards key={t.Id} imagen={t} />
         ))}

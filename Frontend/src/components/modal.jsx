@@ -23,7 +23,7 @@ function Modal() {
       {/* <!-- Button trigger modal --> */}
       <button
         type="button"
-        className="btn bg-secondary rounded-5 m-5 p-3 position-absolute bottom-0 end-0"
+        className="btn bg-secondary rounded-5 m-5 p-3 position-fixed bottom-0 end-0 z-2"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >

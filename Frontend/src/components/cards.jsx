@@ -10,7 +10,7 @@ function Cards({ imagen }) {
 
   if (imagen.IdUser == data.id) {
     return (
-      <div className="card m-2" style={{ width: "23%", maxHeight: "320px" }}>
+      <div className="card m-2">
         <img
           src={`/src/Images/${imagen.img_route}`}
           className="card-img-top p-3 h-75"
@@ -150,19 +150,19 @@ function Cards({ imagen }) {
   }
 
   return (
-    <div className="card" style={{ width: "18rem" }}>
+    <div className="card m-2">
       <img
         src={`/src/Images/${imagen.img_route}`}
-        className="card-img-top p-4"
+        className="card-img-top p-3 h-75"
         alt="..."
       />
-      <div className="card-body">
+      <div className="card-body p-2">
         <h5 className="card-title">{imagen.description}</h5>
-      </div>
-      <div className="card-body">
-        <a href="#" className="card-link text-black">
-          <FaHeart />
-        </a>
+        <div className="d-flex align-items-center">
+          <a href="#" className="card-link text-black">
+            <FaHeart />
+          </a>
+        </div>
       </div>
     </div>
   );
