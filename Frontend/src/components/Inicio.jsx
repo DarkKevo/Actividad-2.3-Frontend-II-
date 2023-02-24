@@ -5,6 +5,7 @@ import { NoSession } from './noSession';
 import '../styles/Inicio.css';
 import { useContext } from 'react';
 import { dataContext } from '../context/context';
+import {FaRegFileExcel} from 'react-icons/fa'
 
 function Inicio() {
   const { imagenes } = useContext(dataContext);
@@ -16,8 +17,9 @@ function Inicio() {
       <div className='Inicio'>
         <Nav />
         <Modal />
-        <div className='container'>
-          <h2>No Hay Imagenes</h2>
+        <div className='noImg'>
+          <h2>No tienes Imagenes</h2>
+          <FaRegFileExcel className='fs-1'/>
         </div>
       </div>
     );
@@ -31,7 +33,7 @@ function Inicio() {
     <div className='Inicio'>
       <Nav />
       <Modal />
-      <div className='container'>
+      <div className='container d-flex flex-wrap justify-content-between'>
         {imagenes.map((t) => (
           <Cards key={t.Id} imagen={t} />
         ))}
