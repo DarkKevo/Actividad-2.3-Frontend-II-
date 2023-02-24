@@ -4,6 +4,20 @@ import axios from 'axios';
 export const dataContext = createContext();
 
 export function DataContextProvider(props) {
+  const [imagenes, setImagenes] = useState([]);
+
+  function TraerImagenes() {
+    axios
+      .get('http://localhost:3000/Images')
+      .then((response) => {
+        let data = response.data;
+        setImagenes(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   function CreateUser(user, password, icon) {
     axios
       .post('http://localhost:3000/CreateUser/send', {
@@ -58,7 +72,7 @@ export function DataContextProvider(props) {
     formdata.append('IdUser', id);
     let config = {
       headers: {
-        Authorization: `Bearer dgderdgdrg`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
       },
     };
@@ -68,6 +82,8 @@ export function DataContextProvider(props) {
         console.log(response);
         if (response.data.message == false) {
           alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+        } else {
+          TraerImagenes();
         }
       })
       .catch(function (error) {
@@ -79,5 +95,9 @@ export function DataContextProvider(props) {
     alert('hi');
   }
 
-  return <dataContext.Provider value={{ hola, CreateUser, Login, LogOut, CargarImagen }}>{props.children}</dataContext.Provider>;
+  useEffect(() => {
+    TraerImagenes();
+  }, []);
+
+  return <dataContext.Provider value={{ hola, CreateUser, Login, LogOut, CargarImagen, imagenes }}>{props.children}</dataContext.Provider>;
 }

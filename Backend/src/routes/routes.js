@@ -10,7 +10,7 @@ import { VerifyToken } from '../controllers/VerifyToken.js';
 
 export const routes = Express.Router();
 
-routes.post('/probando', function (req, res) {
+routes.post('/verify', VerifyToken, function (req, res) {
   //Prueba de Token
   console.log(req.body);
 });

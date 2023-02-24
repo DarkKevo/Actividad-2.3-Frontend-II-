@@ -37,7 +37,7 @@ export const Login = (req, res) => {
     if (results.length == 0) {
       res.json({ message: false, token: null });
     } else {
-      let token = jwt.sign({ user: user, exp: Date.now() + 60 * 10000 }, 'PhayFrase');
+      let token = jwt.sign({ user: user, exp: Date.now() + 60 * 50000 }, 'PhayFrase');
       res.json({ token: token, message: true, icon: results[0].icon, id: results[0].IdUser });
     }
   });
