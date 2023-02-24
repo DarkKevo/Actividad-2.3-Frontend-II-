@@ -36,14 +36,10 @@ function Nav({ seccion }) {
                 </Link>
               </li>
               <li className='nav-item'>
-                <Link to={'/Perfil'} className='nav-link active m-4 fs-5' href='#'>
                   Perfil
-                </Link>
               </li>
               <li className='nav-item'>
-                <Link to={'/favoritos'} className='nav-link active m-4 fs-5' href='#'>
                   Favoritos
-                </Link>
               </li>
               <li className='nav-item dropdown m-4 fs-5'>
               <button
