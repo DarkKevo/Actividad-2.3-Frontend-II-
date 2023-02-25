@@ -19,7 +19,7 @@ routes.post('/Favorite', FavoriteImage, function (req, res) {
   //Recepcion de Favoritos
 });
 
-routes.delete('/Delete', DeleteImage, function (req, res) {
+routes.delete('/Delete/:Id', VerifyToken, DeleteImage, function (req, res) {
   //Recepcion para Eliminar las Imagenes
 });
 
