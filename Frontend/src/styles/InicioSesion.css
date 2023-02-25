@@ -1,52 +1,81 @@
-.InicioSesion{
-    min-height: 100vh;
-    padding-top: 5%;
-    background:none;
-    display: grid;
-    grid-template-columns: repeat(2, 50%);
+.InicioSesion {
+  min-height: 100vh;
+  padding-top: 5%;
+  background: none;
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
 }
 
-.contenedor{
-    grid-column: 1/2 ;
-    padding: 10%;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
+.contenedor {
+  grid-column: 1/2;
+  padding: 10%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
 }
 
-.formulario{
-    grid-column: 2/3;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.formulario {
+  grid-column: 2/3;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.formulario form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .boton {
-    width: 90%;
-    margin: 5%;
+  width: 90%;
+  margin: 5%;
 }
 
-.boton input{
-    padding: 3%;
+.boton input {
+  padding: 3%;
 }
 
 .boton a,
-.boton div{
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.514);
+.boton div {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.514);
 }
 
-.formulario button{
-    padding: 2% 15% 2% 15% ;
-    margin: 5%;
-    color: black;
+.formulario button {
+  padding: 2% 15% 2% 15%;
+  margin: 5%;
+  color: black;
+}
+
+@media (max-width: 920px) {
+  .InicioSesion {
+    display: flex;
+    flex-direction: column;
+  }
+  .contenedor h1,
+  .contenedor p {
+    width: 100%;
+    text-align: center;
+  }
+  .contenedor img {
+    display: none;
+  }
+}
+
+@media (max-width: 450px) {
+  .formulario form {
+    padding: 0;
+  }
+  .boton {
+    width: 100%;
+    margin: 0;
+  }
+  .boton a,
+  .boton div {
+    font-size: 8px;
+}
 }

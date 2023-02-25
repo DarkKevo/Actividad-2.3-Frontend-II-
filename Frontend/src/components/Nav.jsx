@@ -124,13 +124,13 @@ function Nav({ seccion }) {
             </ul>
             <button onClick={LogOut} className='botonCerrar'>
               <img
-                style={{ width: '20%', borderRadius: '100%' }}
+                style={{ width: '15%', borderRadius: '100%' }}
                 src={localStorage.getItem('Sesion') === null ? '../assets/logo_transparent.jpg' : SesionData.icon}
                 alt=''
               />
               <div>
                 <h4>Cerrar sesión</h4>
-                <p>{localStorage.getItem('Sesion') === null ? 'null' : SesionData.user}</p>
+                <p><strong>{localStorage.getItem('Sesion') === null ? 'null' : SesionData.user}</strong></p>
               </div>
               <FaAngleRight className='icon' />
             </button>

@@ -10,48 +10,64 @@ a{
     text-decoration: none;    
 }
 .botonCerrar{
-    width: 100%;
+    width: 25%;
     background-color: rgba(255, 255, 255, 0.678);
     padding: 10px;
+    border:none;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .botonCerrar div{
-    width: 100%;
+    width: auto;
     display: flex;
     flex-direction: column;
-    align-items: start;
 }
 .botonCerrar div h4,
 .botonCerrar div p{
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin: 0;
-    text-align: center;
+    text-align: left;
 }
 .botonCerrar .icon{
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 3%;
 }
 
 @media (max-width:1024px) {
+    .botonCerrar{
+        width: 20%;
+    }
     .botonCerrar div h4,
     .botonCerrar div p{
         font-size: 0.6rem;
     }
-    .botonCerrar .icon{
-        font-size: 2rem;
-    }
 }
 
 @media(max-width:920px){
+    nav .container-fluid{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    .botonCerrar{
+        width: 30%;
+    }
+}
+
+@media (max-width:540px) {
+    .botonCerrar{
+        width: 45%;
+    }
     .botonCerrar div h4,
     .botonCerrar div p{
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
-    .botonCerrar .icon{
-        font-size: 3rem;
+}
+
+@media (max-width:300px) {
+    .botonCerrar{
+        width: 60%;
     }
 }
