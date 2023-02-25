@@ -21,11 +21,14 @@ export const DeleteImage = (req, res) => {
     console.log('Bienvenido, Realizando Query... ' + conexion.threadId);
   });
 
-  let Id = req.body.Id;
+  let Id = req.params.Id;
+  console.log(`el id es ${Id}`);
 
   let query = 'SELECT * from `imagesdatabase`.`imagenes` where `Id` = ' + `${Id}`;
 
   let query2 = 'DELETE from `imagesdatabase`.`imagenes` where `Id` = ' + `${Id}`;
+
+  let query3 = 'SELECT * from `imagesdatabase`.`imagenes`';
 
   conexion.query(query, (err, results) => {
     if (err) {
@@ -35,7 +38,7 @@ export const DeleteImage = (req, res) => {
       console.log(results);
     }
     try {
-      fs.unlinkSync(path.join(`src/Images/${results[0].img_route}`));
+      fs.unlinkSync(path.join(`../Frontend/src/Images/${results[0].img_route}`));
       console.log('Archivo Eliminado');
     } catch (err) {
       console.error('Algo Salio Mal', err);
@@ -50,5 +53,14 @@ export const DeleteImage = (req, res) => {
       console.log(results);
     }
     conexion.end();
+  });
+
+  conexion.query(query3, (err, results) => {
+    if (err) {
+      console.log(err);
+      conexion.end();
+    } else {
+      res.json(results);
+    }
   });
 };

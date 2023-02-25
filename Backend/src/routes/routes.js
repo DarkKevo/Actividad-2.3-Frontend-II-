@@ -10,16 +10,11 @@ import { VerifyToken } from '../controllers/VerifyToken.js';
 
 export const routes = Express.Router();
 
-routes.post('/verify', VerifyToken, function (req, res) {
-  //Prueba de Token
-  console.log(req.body);
-});
-
-routes.post('/Favorite', FavoriteImage, function (req, res) {
+routes.post('/Favorite', VerifyToken, FavoriteImage, function (req, res) {
   //Recepcion de Favoritos
 });
 
-routes.delete('/Delete', DeleteImage, function (req, res) {
+routes.delete('/Delete/:Id', VerifyToken, DeleteImage, function (req, res) {
   //Recepcion para Eliminar las Imagenes
 });
 

@@ -35,10 +35,10 @@ function Nav({ seccion }) {
                   Inicio
                 </Link>
               </li>
-              <li className='nav-item'>
+              <li className='nav-link m-4 fs-5'>
                   Perfil
               </li>
-              <li className='nav-item'>
+              <li className='nav-link m-4 fs-5'>
                   Favoritos
               </li>
               <li className='nav-item dropdown m-4 fs-5'>

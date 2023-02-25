@@ -43,7 +43,7 @@ export const EditImage = (id, description, time, img_route, categoria) => {
       console.log(results);
     }
     try {
-      fs.unlinkSync(path.join(`src/Images/${results[0].img_route}`));
+      fs.unlinkSync(path.join(`../Frontend/src/Images/${results[0].img_route}`));
       console.log('Archivo Eliminado');
     } catch (err) {
       console.error('Algo Salio Mal', err);
