@@ -15,3 +15,10 @@
     justify-content: center;
     color: white;
 }
+
+@media (max-width:990px) {
+    .Inicio .container{
+        max-width: 900px;
+    }
+}
+
