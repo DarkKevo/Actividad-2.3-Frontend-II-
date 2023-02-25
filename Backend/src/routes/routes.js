@@ -10,12 +10,7 @@ import { VerifyToken } from '../controllers/VerifyToken.js';
 
 export const routes = Express.Router();
 
-routes.post('/verify', VerifyToken, function (req, res) {
-  //Prueba de Token
-  console.log(req.body);
-});
-
-routes.post('/Favorite', FavoriteImage, function (req, res) {
+routes.post('/Favorite', VerifyToken, FavoriteImage, function (req, res) {
   //Recepcion de Favoritos
 });
 

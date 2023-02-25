@@ -5,7 +5,7 @@ import { dataContext } from '../context/context';
 
 function Cards({ imagen }) {
   let data = JSON.parse(localStorage.getItem('Sesion'));
-  const { EliminarImagen, EditImage } = useContext(dataContext);
+  const { EliminarImagen, EditImage, Favorite } = useContext(dataContext);
   const [descripcion, setDescripcion] = useState('');
   const [categoria, setCategoria] = useState('all');
   const [file, setFile] = useState('');
@@ -28,7 +28,11 @@ function Cards({ imagen }) {
             <h5 className='card-title'>{imagen.description}</h5>
             <div className='d-flex align-items-center'>
               <a href='#' className='card-link text-black'>
-                <FaHeart />
+                <FaHeart
+                  onClick={() => {
+                    Favorite(imagen.Id, data.user, data.token);
+                  }}
+                />
               </a>
               {/* <!-- Button trigger modal --> */}
               <button type='button' class='btn bg-transparent' data-bs-toggle='modal' data-bs-target='#modal2'>
@@ -198,7 +202,11 @@ function Cards({ imagen }) {
         <h5 className='card-title'>{imagen.description}</h5>
         <div className='d-flex align-items-center'>
           <a href='#' className='card-link text-black'>
-            <FaHeart />
+            <FaHeart
+              onClick={() => {
+                Favorite(imagen.Id, data.user);
+              }}
+            />
           </a>
         </div>
       </div>

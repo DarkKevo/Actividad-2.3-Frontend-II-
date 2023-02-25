@@ -50,6 +50,35 @@ export function DataContextProvider(props) {
       });
   }
 
+  function Favorite(Id, user, token) {
+    console.log(Id, user, token);
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .post(
+        'http://localhost:3000/Favorite',
+        {
+          Id: Id,
+          user: user,
+        },
+        config
+      )
+      .then(function (response) {
+        console.log(response);
+        if (response.data.message == false) {
+          alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+        } else {
+          TraerImagenes();
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   function Login(user, password) {
     axios
       .post('http://localhost:3000/Login/send', {
@@ -144,6 +173,8 @@ export function DataContextProvider(props) {
   }, []);
 
   return (
-    <dataContext.Provider value={{ hola, CreateUser, Login, LogOut, CargarImagen, imagenes, EliminarImagen, EditImage }}>{props.children}</dataContext.Provider>
+    <dataContext.Provider value={{ hola, CreateUser, Login, LogOut, CargarImagen, imagenes, EliminarImagen, EditImage, Favorite }}>
+      {props.children}
+    </dataContext.Provider>
   );
 }
