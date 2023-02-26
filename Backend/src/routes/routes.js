@@ -7,19 +7,17 @@ import { DeleteImage } from '../controllers/DeleteImage.js';
 import { upload3, uploadFile2 } from '../controllers/UploadEditImage.js';
 import { FavoriteImage } from '../controllers/findFavorite.js';
 import { VerifyToken } from '../controllers/VerifyToken.js';
+import { Search } from '../controllers/Search.js';
+import { Favorite } from '../controllers/favorite.js';
+import { Perfil } from '../controllers/Perfil.js';
 
 export const routes = Express.Router();
-
-routes.post('/probando', function (req, res) {
-  //Prueba de Token
-  console.log(req.body);
-});
 
 routes.post('/Favorite', FavoriteImage, function (req, res) {
   //Recepcion de Favoritos
 });
 
-routes.delete('/Delete', DeleteImage, function (req, res) {
+routes.delete('/Delete/:Id', VerifyToken, DeleteImage, function (req, res) {
   //Recepcion para Eliminar las Imagenes
 });
 
@@ -28,6 +26,14 @@ routes.put('/Edit', VerifyToken, upload3, uploadFile2, function (req, res) {
 });
 
 routes.get('/Images', GetImages, function (req, res) {
+  //Recepcion para las Images
+});
+
+routes.get('/Favoritos', Favorite, function (req, res) {
+  //Recepcion para las Images
+});
+
+routes.post('/Perfil', Perfil, function (req, res) {
   //Recepcion para las Images
 });
 
@@ -41,4 +47,8 @@ routes.post('/CreateUser/send', CreateUser, function (req, res) {
 
 routes.post('/Images/send', VerifyToken, upload2, uploadFile, function (req, res) {
   //Recepcion de Imagenes
+});
+
+routes.post('/Images/search', Search, function (req, res) {
+  //Recepcion para las Images
 });

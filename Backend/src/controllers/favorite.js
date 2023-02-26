@@ -1,7 +1,7 @@
 import mysql from 'mysql2';
 import { host, port, username, password } from './MySql.js';
 
-export function CreateImage(img_route, time, description, IdUser, categoria, user) {
+export const Favorite = (req, res) => {
   var conexion = mysql.createConnection({
     host: host,
     port: port,
@@ -19,18 +19,15 @@ export function CreateImage(img_route, time, description, IdUser, categoria, use
     console.log('Bienvenido, Realizando Query... ' + conexion.threadId);
   });
 
-  let query = 'INSERT INTO `imagesdatabase`.`imagenes` (`img_route`, `time`, `description`, `IdUser`, `categoria`, `user`)';
-  query += ` VALUES ('${img_route}', '${time}', '${description}', '${IdUser}', '${categoria}', '${user}');`;
+  let query = 'SELECT * from `imagesdatabase`.`imagenes`;';
 
   conexion.query(query, (err, results) => {
     if (err) {
       console.log(err);
       conexion.end();
-      return false;
     } else {
-      console.log(results);
       conexion.end();
-      return true;
     }
+    res.json(results);
   });
-}
+};

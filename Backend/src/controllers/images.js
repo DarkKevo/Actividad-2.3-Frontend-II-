@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 var name;
 
 const storage = multer.diskStorage({
-  destination: path.join(__dirname, '../Images'),
+  destination: path.join(__dirname, '../../../Frontend/src/Images'),
   filename: (req, file, cb) => {
     name = `${Date.now()}-${file.originalname}`;
     cb(null, `${Date.now()}-${file.originalname}`);
@@ -26,6 +26,7 @@ export const uploadFile = (req, res) => {
   const IdUser = req.body.IdUser;
   const img_route = name;
   const categoria = req.body.categoria;
-  CreateImage(img_route, time, description, IdUser, categoria);
+  const user = req.body.user;
+  CreateImage(img_route, time, description, IdUser, categoria, user);
   res.json({ message: 'Enviado' });
 };

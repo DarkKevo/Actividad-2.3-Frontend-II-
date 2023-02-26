@@ -31,7 +31,9 @@ verify.query(`SHOW DATABASES LIKE 'imagesdatabase'`, (err, res) => {
     sql_query +=
       'CREATE TABLE IF NOT EXISTS `imagesdatabase`.`usuario` (`IdUser` INT NOT NULL AUTO_INCREMENT,`icon` VARCHAR(10000) NOT NULL,`pwd` VARCHAR(45) NOT NULL,`user` VARCHAR(500) NOT NULL,PRIMARY KEY (`IdUser`))ENGINE = InnoDB;';
     sql_query +=
-      'CREATE TABLE IF NOT EXISTS `imagesdatabase`.`Imagenes` (`Id` INT NOT NULL AUTO_INCREMENT,`img_route` VARCHAR(100) NOT NULL,`time` VARCHAR(100) NOT NULL, `categoria` VARCHAR(100) NOT NULL,`description` VARCHAR(500) NOT NULL,`favorite` JSON,`IdUser` INT NOT NULL,PRIMARY KEY (`Id`, `IdUser`),INDEX `fk_user_idx` (`IdUser` ASC) VISIBLE,CONSTRAINT `fk_user`FOREIGN KEY (`IdUser`)REFERENCES `ImagesDataBase`.`usuario` (`IdUser`)ON DELETE CASCADE ON UPDATE CASCADE)ENGINE = InnoDB;';
+      'CREATE TABLE IF NOT EXISTS `imagesdatabase`.`Imagenes` (`Id` INT NOT NULL AUTO_INCREMENT,`img_route` VARCHAR(100) NOT NULL,`time` VARCHAR(100) NOT NULL,`user` VARCHAR(100) NOT NULL, `categoria` VARCHAR(100) NOT NULL,`description` VARCHAR(500) NOT NULL,`favorite` JSON NOT NULL DEFAULT' +
+      `('[]'),` +
+      '`IdUser` INT NOT NULL,PRIMARY KEY (`Id`, `IdUser`),INDEX `fk_user_idx` (`IdUser` ASC) VISIBLE,CONSTRAINT `fk_user`FOREIGN KEY (`IdUser`)REFERENCES `ImagesDataBase`.`usuario` (`IdUser`)ON DELETE CASCADE ON UPDATE CASCADE)ENGINE = InnoDB;';
     sql_query += 'SET SQL_MODE=@OLD_SQL_MODE;';
     sql_query += 'SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;';
     sql_query += 'SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;';

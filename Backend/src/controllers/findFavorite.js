@@ -22,7 +22,8 @@ export const FavoriteImage = (req, res) => {
   let Id = req.body.Id;
   let user = req.body.user;
 
-  let query = 'SELECT * from `imagesdatabase`.`imagenes` where `Id` = ' + `${Id}`;
+  let query = 'SELECT * from `imagesdatabase`.`imagenes` where `Id` = ' + `'${Id}'`;
+  console.log(query);
 
   var query2;
   var query3;
@@ -33,6 +34,7 @@ export const FavoriteImage = (req, res) => {
       console.log(err);
       conexion.end();
     } else {
+      console.log(results);
       let data = results[0].favorite;
       if (data === null) {
         let array = [];
@@ -43,27 +45,28 @@ export const FavoriteImage = (req, res) => {
             console.log(err);
           }
         });
-      }
-      if (data.includes(user)) {
-        data.forEach((i, index) => {
-          if (i == user) {
-            data.splice(index, 1);
-            query2 = 'UPDATE `imagesdatabase`.`imagenes` set `favorite`= ' + `'${JSON.stringify(data)}'` + ' where `Id`= ' + `'${Id}'`;
-            conexion.query(query2, (err, results) => {
-              if (err) {
-                console.log(err);
-              }
-            });
-          }
-        });
       } else {
-        data.push(user);
-        query3 = 'UPDATE `imagesdatabase`.`imagenes` set `favorite`= ' + `'${JSON.stringify(data)}'` + ' where `Id`= ' + `'${Id}'`;
-        conexion.query(query3, (err, results) => {
-          if (err) {
-            console.log(err);
-          }
-        });
+        if (results[0].favorite.includes(user)) {
+          data.forEach((i, index) => {
+            if (i == user) {
+              data.splice(index, 1);
+              query2 = 'UPDATE `imagesdatabase`.`imagenes` set `favorite`= ' + `'${JSON.stringify(data)}'` + ' where `Id`= ' + `'${Id}'`;
+              conexion.query(query2, (err, results) => {
+                if (err) {
+                  console.log(err);
+                }
+              });
+            }
+          });
+        } else {
+          data.push(user);
+          query3 = 'UPDATE `imagesdatabase`.`imagenes` set `favorite`= ' + `'${JSON.stringify(data)}'` + ' where `Id`= ' + `'${Id}'`;
+          conexion.query(query3, (err, results) => {
+            if (err) {
+              console.log(err);
+            }
+          });
+        }
       }
     }
   });

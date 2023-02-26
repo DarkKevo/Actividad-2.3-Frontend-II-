@@ -19,14 +19,13 @@ export const GetImages = (req, res) => {
     console.log('Bienvenido, Realizando Query... ' + conexion.threadId);
   });
 
-  let query = 'SELECT * from `imagesdatabase`.`imagenes` inner join `imagesdatabase`.`usuario`;';
+  let query = 'SELECT * from `imagesdatabase`.`imagenes`;';
 
   conexion.query(query, (err, results) => {
     if (err) {
       console.log(err);
       conexion.end();
     } else {
-      console.log(results);
       conexion.end();
     }
     res.json(results);

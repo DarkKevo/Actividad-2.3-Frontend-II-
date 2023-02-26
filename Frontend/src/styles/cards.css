@@ -1,6 +1,56 @@
 .card{
-    transition: transform 1s;
+    transition: transform 0.5s;
+    width:23%;
+    min-height: 300px;
+    max-height: 350px;
+    height: auto;
 }
 .card:hover{
-    transform: scale(1.25);
+    transform: scale(1.1);
+}
+
+.card-title{
+    font-size: 1rem;
+}
+.card svg{
+    cursor: pointer;
+}
+
+@media (max-width:1024px) {
+    .card{
+        min-height: 250px;
+        max-height: 300px;
+    }
+}
+
+@media(max-width:920px){
+    
+    .card{
+        min-height: 250px;
+        max-height: 300px;
+        width: 20%;
+    }
+    .card-title{
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width:680px) {
+    .card{
+        width:30% ;
+    }
+}
+
+@media (max-width:430px) {
+    .card{
+        width: 45%;
+        min-height: 200px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width:300px) {
+    .card{
+        width: 100%;
+    }
 }

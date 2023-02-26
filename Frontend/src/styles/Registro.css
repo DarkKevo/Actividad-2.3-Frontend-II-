@@ -50,3 +50,32 @@
     margin: 5%;
     color: black;
 }
+
+@media (max-width: 920px) {
+    .Registro {
+      display: flex;
+      flex-direction: column;
+    }
+    .contenedor h1,
+    .contenedor p {
+      width: 100%;
+      text-align: center;
+    }
+    .contenedor img {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .formulario form {
+      padding: 0;
+    }
+    .boton {
+      width: 100%;
+      margin: 0;
+    }
+    .boton a,
+    .boton div {
+      font-size: 8px;
+  }
+  }

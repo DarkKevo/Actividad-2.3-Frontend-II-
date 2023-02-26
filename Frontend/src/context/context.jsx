@@ -4,6 +4,39 @@ import axios from 'axios';
 export const dataContext = createContext();
 
 export function DataContextProvider(props) {
+  const [imagenes, setImagenes] = useState('');
+
+  const [target, setTarget] = useState('');
+
+  function TraerImagenes() {
+    axios
+      .get('http://localhost:3000/Images')
+      .then((response) => {
+        let data = response.data;
+        setImagenes(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function EliminarImagen(Id, token) {
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+    axios
+      .delete(`http://localhost:3000/Delete/${Id}`, config)
+      .then((res) => {
+        setImagenes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   function CreateUser(user, password, icon) {
     axios
       .post('http://localhost:3000/CreateUser/send', {
@@ -13,6 +46,34 @@ export function DataContextProvider(props) {
       })
       .then(function (response) {
         console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  function Favorite(Id, user, token) {
+    console.log(Id, user, token);
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    axios
+      .post(
+        'http://localhost:3000/Favorite',
+        {
+          Id: Id,
+          user: user,
+        },
+        config
+      )
+      .then(function (response) {
+        console.log(response);
+        if (response.data.message == false) {
+          alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+        }
+        TraerImagenes();
       })
       .catch(function (error) {
         console.log(error);
@@ -50,15 +111,16 @@ export function DataContextProvider(props) {
     localStorage.removeItem('Sesion');
   }
 
-  function CargarImagen(descripcion, categoria, id, img, token) {
+  function CargarImagen(descripcion, categoria, id, img, token, user) {
     const formdata = new FormData();
     formdata.append('image', img);
     formdata.append('categoria', categoria);
     formdata.append('description', descripcion);
     formdata.append('IdUser', id);
+    formdata.append('user', user);
     let config = {
       headers: {
-        Authorization: `Bearer dgderdgdrg`,
+        Authorization: `Bearer ${token}`,
         'Content-Type': 'multipart/form-data',
       },
     };
@@ -69,8 +131,77 @@ export function DataContextProvider(props) {
         if (response.data.message == false) {
           alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
         }
+        TraerImagenes();
       })
       .catch(function (error) {
+        console.log(error);
+        TraerImagenes();
+      });
+  }
+
+  function EditImage(descripcion, categoria, id, img, token) {
+    const formdata = new FormData();
+    formdata.append('image', img);
+    formdata.append('categoria', categoria);
+    formdata.append('description', descripcion);
+    formdata.append('id', id);
+    let config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    };
+    axios
+      .put('http://localhost:3000/Edit', formdata, config)
+      .then(function (response) {
+        console.log(response);
+        if (response.data.message == false) {
+          alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+        }
+        TraerImagenes();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  function FavoritosMy(user) {
+    axios
+      .get('http://localhost:3000/Favoritos')
+      .then((response) => {
+        let a = response.data.filter((element) => element.favorite.includes(user));
+        setImagenes(a);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function Perfil(id) {
+    axios
+      .post('http://localhost:3000/Perfil', {
+        id: id,
+      })
+      .then((response) => {
+        let a = response.data;
+        setImagenes(a);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  function RenderCategoria_Autor(categoria, autor) {
+    axios
+      .post('http://localhost:3000/Images/search', {
+        categoria: categoria,
+        autor: autor,
+      })
+      .then((response) => {
+        let a = response.data;
+        setImagenes(a);
+      })
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -79,5 +210,31 @@ export function DataContextProvider(props) {
     alert('hi');
   }
 
-  return <dataContext.Provider value={{ hola, CreateUser, Login, LogOut, CargarImagen }}>{props.children}</dataContext.Provider>;
+  useEffect(() => {
+    TraerImagenes();
+  }, []);
+
+  return (
+    <dataContext.Provider
+      value={{
+        hola,
+        CreateUser,
+        Login,
+        LogOut,
+        CargarImagen,
+        imagenes,
+        EliminarImagen,
+        EditImage,
+        Favorite,
+        target,
+        setTarget,
+        RenderCategoria_Autor,
+        FavoritosMy,
+        TraerImagenes,
+        Perfil,
+      }}
+    >
+      {props.children}
+    </dataContext.Provider>
+  );
 }
