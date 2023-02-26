@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const dataContext = createContext();
 
@@ -31,6 +32,13 @@ export function DataContextProvider(props) {
       .delete(`http://localhost:3000/Delete/${Id}`, config)
       .then((res) => {
         setImagenes(res.data);
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'Eliminado',
+          showConfirmButton: false,
+          timer: 1200,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -71,7 +79,13 @@ export function DataContextProvider(props) {
       .then(function (response) {
         console.log(response);
         if (response.data.message == false) {
-          alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Token Expirado',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
         TraerImagenes();
       })
@@ -88,7 +102,13 @@ export function DataContextProvider(props) {
       })
       .then(function (response) {
         if (response.data.message == false) {
-          alert('No iniciaste');
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Datos Invalidos',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         } else {
           console.log(response.data);
           let Session = {
@@ -129,9 +149,22 @@ export function DataContextProvider(props) {
       .then(function (response) {
         console.log(response);
         if (response.data.message == false) {
-          alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Token Expirado',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
         TraerImagenes();
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Imagen Cargada',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -156,9 +189,22 @@ export function DataContextProvider(props) {
       .then(function (response) {
         console.log(response);
         if (response.data.message == false) {
-          alert('Tu Token de Seguridad ha Expirado por favor inicia sesion nuevamente');
+          Swal.fire({
+            position: 'center',
+            icon: 'error',
+            title: 'Token Expirado',
+            showConfirmButton: false,
+            timer: 1500,
+          });
         }
         TraerImagenes();
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Imagen Cargada',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch(function (error) {
         console.log(error);
