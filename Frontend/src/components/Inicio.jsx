@@ -5,12 +5,18 @@ import { NoSession } from './noSession';
 import '../styles/Inicio.css';
 import { useContext } from 'react';
 import { dataContext } from '../context/context';
-import {FaRegFileExcel} from 'react-icons/fa'
+import { FaRegFileExcel } from 'react-icons/fa';
 
 function Inicio() {
-  const { imagenes } = useContext(dataContext);
+  const { imagenes, LogOut } = useContext(dataContext);
 
-  console.log(imagenes);
+  window.onbeforeunload = function () {
+    LogOut();
+  };
+
+  if (localStorage.getItem('Sesion') === null) {
+    return <NoSession />;
+  }
 
   if (imagenes.length === 0) {
     return (
@@ -19,14 +25,10 @@ function Inicio() {
         <Modal />
         <div className='noImg'>
           <h2>No tienes Imagenes</h2>
-          <FaRegFileExcel className='fs-1'/>
+          <FaRegFileExcel className='fs-1' />
         </div>
       </div>
     );
-  }
-
-  if (localStorage.getItem('Sesion') === null) {
-    return <NoSession />;
   }
 
   return (

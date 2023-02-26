@@ -26,6 +26,7 @@ export const uploadFile = (req, res) => {
   const IdUser = req.body.IdUser;
   const img_route = name;
   const categoria = req.body.categoria;
-  CreateImage(img_route, time, description, IdUser, categoria);
+  const user = req.body.user;
+  CreateImage(img_route, time, description, IdUser, categoria, user);
   res.json({ message: 'Enviado' });
 };
